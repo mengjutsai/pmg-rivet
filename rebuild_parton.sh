@@ -1,7 +1,7 @@
 cd rivet_plugins/
 rivet-build -j 24 Rivet_tttt_parton.so tttt_parton.cc
 cp Rivet_tttt_parton.so ../rivet_ana/
-#cp Rivet_tttt_parton.so ../library/
+cp Rivet_tttt_parton.so ../library/
 cd ..
 
 # rivet-build -j 24 Rivet_parton_ttW_ttH-fixedXsec.so ttW_ttH_parton-fixedXsec.cc

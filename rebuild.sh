@@ -1,7 +1,7 @@
 cd rivet_plugins/
 rivet-build -j 24 Rivet_tttt_event.so tttt_event.cc
 cp Rivet_tttt_event.so  ../rivet_ana/
-#cp Rivet_tttt_event.so  ../library/
+cp Rivet_tttt_event.so  ../library/
 cd ..
 
 
