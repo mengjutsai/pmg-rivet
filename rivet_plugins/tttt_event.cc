@@ -38,11 +38,11 @@ namespace Rivet {
 
 
 
-  class ttw_ttH: public Analysis {
+  class tttt_event: public Analysis {
   public:
 
     /// Minimal constructor
-    ttw_ttH() : Analysis("ttw_ttH")
+    tttt_event() : Analysis("tttt_event")
     {
     }
 
@@ -83,133 +83,103 @@ namespace Rivet {
       //Histogramming
 
       // Inclusive region
-      book(_h["Inclusive_nJets"],"Inclusive_nJets",11,-0.5,10.5);
-      book(_h["Inclusive_HT"],"Inclusive_HT",20,0,1200);
-      book(_h["Inclusive_HT_jets"],"Inclusive_HT_jets",20,0,1200);
-      book(_h["Inclusive_nBjets"],"Inclusive_nBjets",5,-0.5,4.5);
+      book(_h["sumOfWeights"],"sumOfWeights",2,0,2);
+
+
+      book(_h["Inclusive_nJets"],"Inclusive_nJets",15,-0.5,14.5);
+      book(_h["Inclusive_HT"],"Inclusive_HT",15,0,3000);
+      book(_h["Inclusive_HT_jets"],"Inclusive_HT_jets",15,0,3000);
+      book(_h["Inclusive_nBjets"],"Inclusive_nBjets",7,-0.5,6.5);
+      book(_h["Inclusive_nHadTau"],"Inclusive_nHadTau",4,-0.5,3.5);
       book(_h["Inclusive_jet0Pt"],"Inclusive_jet0Pt",20,0,600);
       book(_h["Inclusive_jet0Eta"],"Inclusive_jet0Eta",10,-2.5,2.5);
 
-      // Check lepton number
-      book(_h["Inclusive_nLep_noHadTau"],"Inclusive_nLep_noHadTau",4,-0.5,3.5);
-      book(_h["Inclusive_nLep_withHadTau"],"Inclusive_nLep_withHadTau",4,-0.5,3.5);
-      // book(_h["LepSelection_nLep_noHadTau"],"LepSelection_nLep_noHadTau",4,-0.5,3.5);
-      // book(_h["LepSelection_nLep_withHadTau"],"LepSelection_nLep_withHadTau",4,-0.5,3.5);
+      book(_h["Inclusive_lep0Pt"],"Inclusive_lep0Pt",20,0,600);
+      book(_h["Inclusive_lep0Eta"],"Inclusive_lep0Eta",10,-2.5,2.5);
+      book(_h["Inclusive_lep1Pt"],"Inclusive_lep1Pt",20,0,600);
+      book(_h["Inclusive_lep1Eta"],"Inclusive_lep1Eta",10,-2.5,2.5);
+      book(_h["Inclusive_entries"],"Inclusive_entries",3,-0.5,3.5);
 
 
-      // book(_h["Njge4_nJets"],"Njge4_nJets",9,3.5,12.5);
-      // book(_h["Njge4_jet0Pt"],"Njge4_jet0Pt",20,0,600);
-
-      book(_h["sumOfWeights"],"sumOfWeights",2,0,2);
-      book(_h["Inclusive_sumW"],"Inclusive_sumW",1,-10000000,10000000);
-      // book(_h["2lSS0tau_region1_sumW"],"2lSS0tau_region1_sumW",1,-10000000,10000000);
-      // book(_h["2lSS0tau_region2_sumW"],"2lSS0tau_region2_sumW",1,-10000000,10000000);
-      // book(_h["3l_region_sumW"],"3l_region_sumW",1,-10000000,10000000);
-
-
-     // book(_h["2tau_region_DR_tau01"],"2tau_region_DR_tau01",10,0,2*M_PI);
-     // book(_h["2tau_region_DEta_tau01"],"2tau_region_DEta_tau01",20,-2*M_PI,2*M_PI);
-     // book(_h["2tau_region_DPhi_tau01"],"2tau_region_DPhi_tau01",20,-2*M_PI,2*M_PI);
-     //
-     // book(_h["2lSS0tau_region1_nJets"],"2lSS0tau_region1_nJets",11,-0.5,10.5);
-     // book(_h["2lSS0tau_region1_HT"],"2lSS0tau_region1_HT",20,0,1200);
-     // book(_h["2lSS0tau_region1_HT_jets"],"2lSS0tau_region1_HT_jets",20,0,1200);
-     // book(_h["2lSS0tau_region1_nBjets"],"2lSS0tau_region1_nBjets",5,-0.5,4.5);
-     // book(_h["2lSS0tau_region1_bjet0Pt"],"2lSS0tau_region1_bjet0Pt",20,0,400);
-     // book(_h["2lSS0tau_region1_lep0Pt"],"2lSS0tau_region1_lep0Pt",20,0,300);
-     // book(_h["2lSS0tau_region1_lep0Eta"],"2lSS0tau_region1_lep0Eta",20,-2.5,2.5);
-     // book(_h["2lSS0tau_region1_lepJetMinDR"],"2lSS0tau_region1_lepJetMinDR",5,0,0.5);
-     // book(_h["2lSS0tau_region1_DR_lep01"],"2lSS0tau_region1_DR_lep01",10,0,2*M_PI);
-     // book(_h["2lSS0tau_region1_DEta_lep01"],"2lSS0tau_region1_DEta_lep01",10,0,5);
-     // book(_h["2lSS0tau_region1_DPhi_lep01"],"2lSS0tau_region1_DPhi_lep01",10,0,4);
-     // book(_h["2lSS0tau_region1_jet0Pt"],"2lSS0tau_region1_jet0Pt",20,0,600);
-     // book(_h["2lSS0tau_region1_jet0Eta"],"2lSS0tau_region1_jet0Eta",10,-2.5,2.5);
-     //
-     // book(_h["2lSS0tau_region2_nJets"],"2lSS0tau_region2_nJets",11,-0.5,10.5);
-     // book(_h["2lSS0tau_region2_HT"],"2lSS0tau_region2_HT",20,0,1200);
-     // book(_h["2lSS0tau_region2_HT_jets"],"2lSS0tau_region2_HT_jets",20,0,1200);
-     // book(_h["2lSS0tau_region2_nBjets"],"2lSS0tau_region2_nBjets",5,-0.5,4.5);
-     // book(_h["2lSS0tau_region2_bjet0Pt"],"2lSS0tau_region2_bjet0Pt",20,0,400);
-     // book(_h["2lSS0tau_region2_lep0Pt"],"2lSS0tau_region2_lep0Pt",20,0,300);
-     // book(_h["2lSS0tau_region2_lep0Eta"],"2lSS0tau_region2_lep0Eta",20,-2.5,2.5);
-     // book(_h["2lSS0tau_region2_lepJetMinDR"],"2lSS0tau_region2_lepJetMinDR",5,0,0.5);
-     // book(_h["2lSS0tau_region2_DR_lep01"],"2lSS0tau_region2_DR_lep01",10,0,2*M_PI);
-     // book(_h["2lSS0tau_region2_DEta_lep01"],"2lSS0tau_region2_DEta_lep01",10,0,5);
-     // book(_h["2lSS0tau_region2_DPhi_lep01"],"2lSS0tau_region2_DPhi_lep01",10,0,4);
-     // book(_h["2lSS0tau_region2_jet0Pt"],"2lSS0tau_region2_jet0Pt",20,0,600);
-     // book(_h["2lSS0tau_region2_jet0Eta"],"2lSS0tau_region2_jet0Eta",10,-2.5,2.5);
-     //
-     //
-     // book(_h["3l_region_nJets"],"3l_region_nJets",11,-0.5,10.5);
-     // book(_h["3l_region_HT"],"3l_region_HT",20,0,1200);
-     // book(_h["3l_region_HT_jets"],"3l_region_HT_jets",20,0,1200);
-     // book(_h["3l_region_nBjets"],"3l_region_nBjets",5,-0.5,4.5);
-     // book(_h["3l_region_bjet0Pt"],"3l_region_bjet0Pt",20,0,400);
-     // book(_h["3l_region_lep0Pt"],"3l_region_lep0Pt",20,0,300);
-     // book(_h["3l_region_lep0Eta"],"3l_region_lep0Eta",20,-2.5,2.5);
-     // book(_h["3l_region_lepJetMinDR"],"3l_region_lepJetMinDR",5,0,0.5);
-     // book(_h["3l_region_DR_lep01"],"3l_region_DR_lep01",10,0,2*M_PI);
-     // book(_h["3l_region_DEta_lep01"],"3l_region_DEta_lep01",10,0,5);
-     // book(_h["3l_region_DPhi_lep01"],"3l_region_DPhi_lep01",10,0,4);
-     // book(_h["3l_region_jet0Pt"],"3l_region_jet0Pt",20,0,600);
-     // book(_h["3l_region_jet0Eta"],"3l_region_jet0Eta",10,-2.5,2.5);
+     book(_h["2lSS3l_nJets"],"2lSS3l_nJets",15,-0.5,14.5);
+     book(_h["2lSS3l_HT"],"2lSS3l_HT",15,0,3000);
+     book(_h["2lSS3l_HT_jets"],"2lSS3l_HT_jets",15,0,3000);
+     book(_h["2lSS3l_nBjets"],"2lSS3l_nBjets",7,-0.5,6.5);
+     book(_h["2lSS3l_lep0Pt"],"2lSS3l_lep0Pt",20,0,300);
+     book(_h["2lSS3l_lep0Eta"],"2lSS3l_lep0Eta",20,-2.5,2.5);
+     book(_h["2lSS3l_lepJetMinDR"],"2lSS3l_lepJetMinDR",5,0,0.5);
+     book(_h["2lSS3l_DR_lep01"],"2lSS3l_DR_lep01",10,0,2*M_PI);
+     book(_h["2lSS3l_DEta_lep01"],"2lSS3l_DEta_lep01",10,0,5);
+     book(_h["2lSS3l_DPhi_lep01"],"2lSS3l_DPhi_lep01",10,0,4);
+     book(_h["2lSS3l_jet0Pt"],"2lSS3l_jet0Pt",20,0,600);
+     book(_h["2lSS3l_jet0Eta"],"2lSS3l_jet0Eta",10,-2.5,2.5);
+     book(_h["2lSS3l_bjet0Pt"],"2lSS3l_bjet0Pt",20,0,400);
+     book(_h["2lSS3l_entries"],"2lSS3l_entries",3,-0.5,3.5);
 
 
 
-//      book(_h["2lSS0tau_region3_nJets"],"2lSS0tau_region3_nJets",10,-0.5,9.5);
-//      book(_h["2lSS0tau_region3_HT"],"2lSS0tau_region3_HT",100,0,2000);
-//      book(_h["2lSS0tau_region3_nBjets"],"2lSS0tau_region3_nBjets",4,-0.5,3.5);
-//      book(_h["2lSS0tau_region3_bjet0pT"],"2lSS0tau_region3_bjet0Pt",50,0,500);
-//      book(_h["2lSS0tau_region3_lep0pT"],"2lSS0tau_region3_lep0Pt",40,0,800);
-//      book(_h["2lSS0tau_region3_lepJetMinDR"],"2lSS0tau_region3_lepJetminDR",5,0,0.5);
-//      book(_h["2lSS0tau_region3_DR_lep01"],"2lSS0tau_region3_DR_lep01",10,0,2*M_PI);
-//      book(_h["2lSS0tau_region3_DEta_lep01"],"2lSS0tau_region3_DEta_lep01",10,0,2*M_PI);
-//      book(_h["2lSS0tau_region3_DPhi_lep01"],"2lSS0tau_region3_DPhi_lep01",10,0,2*M_PI);
-//
-//
-//      book(_h["2lSS0tau_region4_nJets"],"2lSS0tau_region4_nJets",10,-0.5,9.5);
-//      book(_h["2lSS0tau_region4_HT"],"2lSS0tau_region4_HT",100,0,2000);
-//      book(_h["2lSS0tau_region4_nBjets"],"2lSS0tau_region4_nBjets",4,-0.5,3.5);
-//      book(_h["2lSS0tau_region4_bjet0pT"],"2lSS0tau_region4_bjet0Pt",50,0,500);
-//      book(_h["2lSS0tau_region4_lep0pT"],"2lSS0tau_region4_lep0Pt",40,0,800);
-//      book(_h["2lSS0tau_region4_lepJetMinDR"],"2lSS0tau_region4_lepJetminDR",5,0,0.5);
-//      book(_h["2lSS0tau_region4_DR_lep01"],"2lSS0tau_region4_DR_lep01",10,0,2*M_PI);
-//      book(_h["2lSS0tau_region4_DEta_lep01"],"2lSS0tau_region4_DEta_lep01",10,0,2*M_PI);
-//      book(_h["2lSS0tau_region4_DPhi_lep01"],"2lSS0tau_region4_DPhi_lep01",10,0,2*M_PI);
-//
-//      book(_h["2lSS0tau_region5_nJets"],"2lSS0tau_region5_nJets",10,-0.5,9.5);
-//      book(_h["2lSS0tau_region5_HT"],"2lSS0tau_region5_HT",100,0,2000);
-//      book(_h["2lSS0tau_region5_nBjets"],"2lSS0tau_region5_nBjets",4,-0.5,3.5);
-//      book(_h["2lSS0tau_region5_bjet0pT"],"2lSS0tau_region5_bjet0Pt",50,0,500);
-//      book(_h["2lSS0tau_region5_lep0pT"],"2lSS0tau_region5_lep0Pt",40,0,800);
-//      book(_h["2lSS0tau_region5_lepJetMinDR"],"2lSS0tau_region5_lepJetminDR",5,0,0.5);
-//      book(_h["2lSS0tau_region5_DR_lep01"],"2lSS0tau_region5_DR_lep01",10,0,2*M_PI);
-//      book(_h["2lSS0tau_region5_DEta_lep01"],"2lSS0tau_region5_DEta_lep01",10,0,2*M_PI);
-//      book(_h["2lSS0tau_region5_DPhi_lep01"],"2lSS0tau_region5_DPhi_lep01",10,0,2*M_PI);
-//
-//      book(_h["2lSS1tau_region6_nJets"],"2lSS1tau_region6_nJets",10,-0.5,9.5);
-//      book(_h["2lSS1tau_region6_HT"],"2lSS1tau_region6_HT",100,0,2000);
-//      book(_h["2lSS1tau_region6_nBjets"],"2lSS1tau_region6_nBjets",4,-0.5,3.5);
-//      book(_h["2lSS1tau_region6_bjet0pT"],"2lSS1tau_region6_bjet0Pt",50,0,500);
-//      book(_h["2lSS1tau_region6_lep0pT"],"2lSS1tau_region6_lep0Pt",40,0,800);
-//      book(_h["2lSS1tau_region6_lepJetMinDR"],"2lSS1tau_region6_lepJetminDR",5,0,0.5);
-//      book(_h["2lSS1tau_region6_DR_lep01"],"2lSS1tau_region6_DR_lep01",10,0,2*M_PI);
-//      book(_h["2lSS1tau_region6_DEta_lep01"],"2lSS1tau_region6_DEta_lep01",10,0,2*M_PI);
-//      book(_h["2lSS1tau_region6_DPhi_lep01"],"2lSS1tau_region6_DPhi_lep01",10,0,2*M_PI);
-//      book(_h["2lSS1tau_region6_tauPt"],"2lSS1tau_region6_tauPt",50,0,500);
-//
-//
-//      book(_h["2lSS1tau_region7_nJets"],"2lSS1tau_region7_nJets",10,-0.5,9.5);
-//      book(_h["2lSS1tau_region7_HT"],"2lSS1tau_region7_HT",100,0,2000);
-//      book(_h["2lSS1tau_region7_nBjets"],"2lSS1tau_region7_nBjets",4,-0.5,3.5);
-//      book(_h["2lSS1tau_region7_bjet0pT"],"2lSS1tau_region7_bjet0Pt",50,0,500);
-//      book(_h["2lSS1tau_region7_lep0pT"],"2lSS1tau_region7_lep0Pt",40,0,800);
-//      book(_h["2lSS1tau_region7_lepJetMinDR"],"2lSS1tau_region7_lepJetminDR",5,0,0.5);
-//      book(_h["2lSS1tau_region7_DR_lep01"],"2lSS1tau_region7_DR_lep01",10,0,2*M_PI);
-//      book(_h["2lSS1tau_region7_DEta_lep01"],"2lSS1tau_region7_DEta_lep01",10,0,2*M_PI);
-//      book(_h["2lSS1tau_region7_DPhi_lep01"],"2lSS1tau_region7_DPhi_lep01",10,0,2*M_PI);
-//      book(_h["2lSS1tau_region7_tauPt"],"2lSS1tau_region7_tauPt",50,0,500);
 
+     book(_h["2lSS_nJets"],"2lSS_nJets",15,-0.5,14.5);
+     book(_h["2lSS_HT"],"2lSS_HT",15,0,3000);
+     book(_h["2lSS_HT_jets"],"2lSS_HT_jets",15,0,3000);
+     book(_h["2lSS_nBjets"],"2lSS_nBjets",7,-0.5,6.5);
+     book(_h["2lSS_lep0Pt"],"2lSS_lep0Pt",20,0,300);
+     book(_h["2lSS_lep0Eta"],"2lSS_lep0Eta",20,-2.5,2.5);
+     book(_h["2lSS_lepJetMinDR"],"2lSS_lepJetMinDR",5,0,0.5);
+     book(_h["2lSS_DR_lep01"],"2lSS_DR_lep01",10,0,2*M_PI);
+     book(_h["2lSS_DEta_lep01"],"2lSS_DEta_lep01",10,0,5);
+     book(_h["2lSS_DPhi_lep01"],"2lSS_DPhi_lep01",10,0,4);
+     book(_h["2lSS_jet0Pt"],"2lSS_jet0Pt",20,0,600);
+     book(_h["2lSS_jet0Eta"],"2lSS_jet0Eta",10,-2.5,2.5);
+     book(_h["2lSS_bjet0Pt"],"2lSS_bjet0Pt",20,0,400);
+     book(_h["2lSS_entries"],"2lSS_entries",3,-0.5,3.5);
+
+     book(_h["2lSS_1b4j_nJets"],"2lSS_1b4j_nJets",15,-0.5,14.5);
+     book(_h["2lSS_1b4j_HT"],"2lSS_1b4j_HT",15,0,3000);
+     book(_h["2lSS_1b4j_HT_jets"],"2lSS_1b4j_HT_jets",15,0,3000);
+     book(_h["2lSS_1b4j_nBjets"],"2lSS_1b4j_nBjets",7,-0.5,6.5);
+     book(_h["2lSS_1b4j_bjet0Pt"],"2lSS_1b4j_bjet0Pt",20,0,400);
+     book(_h["2lSS_1b4j_lep0Pt"],"2lSS_1b4j_lep0Pt",20,0,300);
+     book(_h["2lSS_1b4j_lep0Eta"],"2lSS_1b4j_lep0Eta",20,-2.5,2.5);
+     book(_h["2lSS_1b4j_lepJetMinDR"],"2lSS_1b4j_lepJetMinDR",5,0,0.5);
+     book(_h["2lSS_1b4j_DR_lep01"],"2lSS_1b4j_DR_lep01",10,0,2*M_PI);
+     book(_h["2lSS_1b4j_DEta_lep01"],"2lSS_1b4j_DEta_lep01",10,0,5);
+     book(_h["2lSS_1b4j_DPhi_lep01"],"2lSS_1b4j_DPhi_lep01",10,0,4);
+     book(_h["2lSS_1b4j_jet0Pt"],"2lSS_1b4j_jet0Pt",20,0,600);
+     book(_h["2lSS_1b4j_jet0Eta"],"2lSS_1b4j_jet0Eta",10,-2.5,2.5);
+     book(_h["2lSS_1b4j_entries"],"2lSS_1b4j_entries",3,-0.5,3.5);
+
+
+     book(_h["3l_nJets"],"3l_nJets",15,-0.5,14.5);
+     book(_h["3l_HT"],"3l_HT",15,0,3000);
+     book(_h["3l_HT_jets"],"3l_HT_jets",15,0,3000);
+     book(_h["3l_nBjets"],"3l_nBjets",7,-0.5,6.5);
+     book(_h["3l_lep0Pt"],"3l_lep0Pt",20,0,300);
+     book(_h["3l_lep0Eta"],"3l_lep0Eta",20,-2.5,2.5);
+     book(_h["3l_lepJetMinDR"],"3l_lepJetMinDR",5,0,0.5);
+     book(_h["3l_DR_lep01"],"3l_DR_lep01",10,0,2*M_PI);
+     book(_h["3l_DEta_lep01"],"3l_DEta_lep01",10,0,5);
+     book(_h["3l_DPhi_lep01"],"3l_DPhi_lep01",10,0,4);
+     book(_h["3l_jet0Pt"],"3l_jet0Pt",20,0,600);
+     book(_h["3l_jet0Eta"],"3l_jet0Eta",10,-2.5,2.5);
+     book(_h["3l_bjet0Pt"],"3l_bjet0Pt",20,0,400);
+     book(_h["3l_entries"],"3l_entries",3,-0.5,3.5);
+
+
+     book(_h["3l_1b2j_nJets"],"3l_1b2j_nJets",15,-0.5,14.5);
+     book(_h["3l_1b2j_HT"],"3l_1b2j_HT",15,0,3000);
+     book(_h["3l_1b2j_HT_jets"],"3l_1b2j_HT_jets",15,0,3000);
+     book(_h["3l_1b2j_nBjets"],"3l_1b2j_nBjets",7,-0.5,6.5);
+     book(_h["3l_1b2j_bjet0Pt"],"3l_1b2j_bjet0Pt",20,0,400);
+     book(_h["3l_1b2j_lep0Pt"],"3l_1b2j_lep0Pt",20,0,300);
+     book(_h["3l_1b2j_lep0Eta"],"3l_1b2j_lep0Eta",20,-2.5,2.5);
+     book(_h["3l_1b2j_lepJetMinDR"],"3l_1b2j_lepJetMinDR",5,0,0.5);
+     book(_h["3l_1b2j_DR_lep01"],"3l_1b2j_DR_lep01",10,0,2*M_PI);
+     book(_h["3l_1b2j_DEta_lep01"],"3l_1b2j_DEta_lep01",10,0,5);
+     book(_h["3l_1b2j_DPhi_lep01"],"3l_1b2j_DPhi_lep01",10,0,4);
+     book(_h["3l_1b2j_jet0Pt"],"3l_1b2j_jet0Pt",20,0,600);
+     book(_h["3l_1b2j_jet0Eta"],"3l_1b2j_jet0Eta",10,-2.5,2.5);
+     book(_h["3l_1b2j_entries"],"3l_1b2j_entries",3,-0.5,3.5);
 
 
     }
@@ -256,33 +226,6 @@ namespace Rivet {
           }
       }
 
- //     for(const Particle &p: eMinusFromTaus)
- //     {
- //         _h["eMinusFromTaus_pt"]->fill(p.pT()/GeV);
- //         _h["eMinusFromTaus_Eta"]->fill(p.eta());
- //         _h["eMinusFromTaus_phi"]->fill(p.phi());
- //     }
-
- //     for(const Particle &p: ePlusFromTaus)
- //     {
- //         _h["ePlusFromTaus_pt"]->fill(p.pT()/GeV);
- //         _h["ePlusFromTaus_Eta"]->fill(p.eta());
- //         _h["ePlusFromTaus_phi"]->fill(p.phi());
- //     }
-
- //     for(const Particle &p: muonsFromTaus)
- //     {
- //         _h["MuonsFromTaus_pt"]->fill(p.pT()/GeV);
- //         _h["MuonsFromTaus_Eta"]->fill(p.eta());
- //         _h["MuonsFromTaus_phi"]->fill(p.phi());
- //     }
-
- //     for(const Particle &p: antiMuonsFromTaus)
- //     {
- //         _h["AntiMuonsFromTaus_pt"]->fill(p.pT()/GeV);
- //         _h["AntiMuonsFromTaus_Eta"]->fill(p.eta());
- //         _h["AntiMuonsFromTaus_phi"]->fill(p.phi());
- //     }
 
       Particles elVec,muVec,tauVec,lepVec;
       Particles Inclusive_elVec,Inclusive_muVec, Inclusive_tauVec, Inclusive_allVec;
@@ -310,29 +253,14 @@ namespace Rivet {
        	      lepVec.push_back(mu);
           }
       }
-      const TauFinder &tauhad = applyProjection<TauFinder>(event,"TauHadronic");
-      for(const Particle &tau: tauhad.taus())
-      {
-          Inclusive_tauVec.push_back(tau);
-          Inclusive_allVec.push_back(tau);
-          if(tau.pT()/GeV >25 )
-          {
-            int nProng = countProngs(tau);
-            if(nProng ==2 || nProng ==3)
-            {
-              tauVec.push_back(tau);
-            }
-          }
-      }
 
       elVec = sortByPt(elVec);
       muVec = sortByPt(muVec);
-      tauVec= sortByPt(tauVec);
       lepVec= sortByPt(lepVec);
+
 
       Inclusive_elVec  = sortByPt(Inclusive_elVec);
       Inclusive_muVec  = sortByPt(Inclusive_muVec);
-      Inclusive_tauVec = sortByPt(Inclusive_tauVec);
       Inclusive_allVec = sortByPt(Inclusive_allVec);
 
       int nLep = lepVec.size();
@@ -348,6 +276,15 @@ namespace Rivet {
           muqsum += mu.charge();
       }
 
+       // Particles test_vec;
+       // std::vector<FourMomentum> test_vec;
+       // for(const Jet& jet: alljets)
+       // {
+       //   test_vec.push_back(jet);
+       //      // MSG_INFO("test_vec = " << test_vec.size() << ", alljets = "<< alljets.size() );
+       //
+       // }
+
       Jets alljets;
       //for(const Jet &jet : applyProjection<FastJets>(event, "Jets").jetsByPt(25*GeV))
 
@@ -360,20 +297,7 @@ namespace Rivet {
               alljets.push_back(jet);
           }
       }
-
-
-      double ht_jets = 0.0;
-      double ht = 0.0;
-      for(const Jet& j: alljets) {
-        ht_jets += j.pT();
-        ht += j.pT();
-      }
-      for(const Particle & lep: lepVec){
-        ht += lep.pT();
-      }
-      for(const Particle & taulep: tauVec){
-        ht += taulep.pT();
-      }
+      // MSG_INFO("alljets = " << alljets.size() << ", alljets_validation = "<< alljets_validation.size() );
 
 
       // Identify b-jets
@@ -391,18 +315,70 @@ namespace Rivet {
               ljets.push_back(jet);
           }
      }
+
+     // MSG_INFO("bjets = " << bjets.size() << ", bjets_validation = "<< bjets_validation.size() );
+     // MSG_INFO("ljets = " << ljets.size() << ", ljets_validation = "<< ljets_validation.size() );
+
+
      alljets    =   sortByPt(alljets);
      bjets      =   sortByPt(bjets);
      ljets      =   sortByPt(ljets);
 
-     float min_lj_deltaR=100;
-     for(const Jet& jet: alljets){
-         for(const Particle & part: lepVec){
-    	     if(min_lj_deltaR > fabs(deltaR(jet,part))) {min_lj_deltaR = fabs(deltaR(jet,part)); }
-      	 }
-     }
 
-     if (debug){ // check the lepton from tau are right
+     // Include Hadronic tau in the jet collection
+     std::vector<FourMomentum> alljets_withHadTau, ljets_withHadTau;
+     alljets_withHadTau = alljets;
+     ljets_withHadTau = ljets;
+
+      const TauFinder &tauhad = applyProjection<TauFinder>(event,"TauHadronic");
+      for(const Particle &tau: tauhad.taus())
+      {
+          Inclusive_tauVec.push_back(tau);
+          Inclusive_allVec.push_back(tau);
+          if(tau.pT()/GeV >25 && fabs(tau.eta()) < 2.5 )
+          {
+            int nProng = countProngs(tau);
+            if(nProng ==2 || nProng ==3)
+            {
+              tauVec.push_back(tau);
+              alljets_withHadTau.push_back(tau);
+              ljets_withHadTau.push_back(tau);
+            }
+          }
+      }
+
+      tauVec= sortByPt(tauVec);
+      Inclusive_tauVec = sortByPt(Inclusive_tauVec);
+
+     alljets_withHadTau  =   sortByPt(alljets_withHadTau);
+     ljets_withHadTau    =   sortByPt(ljets_withHadTau);
+
+     // MSG_INFO("tauVec = " << tauVec.size()  );
+     // MSG_INFO("alljets = " << alljets.size() << ", alljets_withHadTau = "<< alljets_withHadTau.size() );
+     // MSG_INFO("ljets = " << ljets.size() << ", ljets_withHadTau = "<< ljets_withHadTau.size() );
+
+
+      double ht_jets = 0.0;
+      double ht = 0.0;
+      for(const FourMomentum& j: alljets_withHadTau) {
+        ht_jets += j.pT();
+        ht += j.pT();
+      }
+      for(const Particle & lep: lepVec){
+        ht += lep.pT();
+      }
+
+
+      float min_lj_deltaR=100;
+      for(const FourMomentum& jet: alljets_withHadTau){ // Use alljets+Hadronic Tau
+          for(const Particle & part: lepVec){
+     	     if(min_lj_deltaR > fabs(deltaR(jet,part))) {min_lj_deltaR = fabs(deltaR(jet,part)); }
+       	 }
+      }
+
+
+     if (debug){ // to check the lepton from tau is included in the inclusive electron/muon collections -
+       // conclusion: yes, ele/mu collections include the e/m from leptonic tau
        Inclusive_elVec = sortByPt(Inclusive_elVec);
        Inclusive_muVec = sortByPt(Inclusive_muVec);
        eMinusFromTaus = sortByPt(eMinusFromTaus);
@@ -410,7 +386,8 @@ namespace Rivet {
 
        MSG_INFO("All electron = " << Inclusive_elVec.size() << ", All muon = "<< Inclusive_muVec.size());
        MSG_INFO("electron from tau = " << eMinusFromTaus.size()+ePlusFromTaus.size() << ", muon from tau  = "<< muonsFromTaus.size()+antiMuonsFromTaus.size());
-       MSG_INFO("lepton numer = " << lepVec.size() << " , electron number = " << elVec.size() << " , muon number " << muVec.size() << " , tau number = " << tauVec.size());
+       MSG_INFO("After 10GeV, abs(eta) < 2.5");
+       MSG_INFO(">> lepton numer = " << lepVec.size() << " , electron number = " << elVec.size() << " , muon number " << muVec.size() << " , tau number = " << tauVec.size());
 
        if ( (Inclusive_elVec.size() == eMinusFromTaus.size()+ePlusFromTaus.size()) && (Inclusive_elVec.size()>0) ){
          float ele0 = Inclusive_elVec.at(0).pT()/GeV;
@@ -438,190 +415,161 @@ namespace Rivet {
        }
      }
 
-     _h["Inclusive_nLep_noHadTau"]->fill(Inclusive_elVec.size()+Inclusive_muVec.size());
-     _h["Inclusive_nLep_withHadTau"]->fill(Inclusive_allVec.size());
-     // _h["LepSelection_nLep_noHadTau"]->fill(nLep);
-     // _h["LepSelection_nLep_withHadTau"]->fill(nLep+tauVec.size());
-
-
-      _h["Inclusive_sumW"]->fill(1);
-      _h["Inclusive_nJets"]->fill(alljets.size());
+      _h["Inclusive_nJets"]->fill(alljets_withHadTau.size());
       _h["Inclusive_HT"]->fill(ht);
       _h["Inclusive_HT_jets"]->fill(ht_jets);
       _h["Inclusive_nBjets"]->fill(bjets.size());
+      _h["Inclusive_nHadTau"]->fill(tauVec.size());
+      _h["Inclusive_entries"]->fill(1,1);
 
-      if (alljets.size() >= 1){
-        _h["Inclusive_jet0Pt"]->fill(alljets.at(0).pT()/GeV);
-        _h["Inclusive_jet0Eta"]->fill(alljets.at(0).eta());
+      if (alljets_withHadTau.size() >= 1){
+        _h["Inclusive_jet0Pt"]->fill(alljets_withHadTau.at(0).pT()/GeV);
+        _h["Inclusive_jet0Eta"]->fill(alljets_withHadTau.at(0).eta());
       }
       else{
         _h["Inclusive_jet0Pt"]->fill(-99);
         _h["Inclusive_jet0Eta"]->fill(-99);
       }
 
-    // if(alljets.size() > 4)  {
-    //   _h["Njge4_nJets"]->fill(alljets.size());
-    //   _h["Njge4_jet0Pt"]->fill(alljets.at(0).pT()/GeV);
-    // }
+      if (lepVec.size() >= 1){
+        _h["Inclusive_lep0Pt"]->fill(lepVec.at(0).pT()/GeV);
+        _h["Inclusive_lep0Eta"]->fill(lepVec.at(0).eta());
+      }
+
+      if (lepVec.size() >= 2){
+        _h["Inclusive_lep1Pt"]->fill(lepVec.at(1).pT()/GeV);
+        _h["Inclusive_lep1Eta"]->fill(lepVec.at(1).eta());
+      }
 
 
-    // if(tauVec.size()>=2){
-    //     _h["2tau_region_DR_tau01"]->fill(fabs(deltaR(tauVec.at(0),tauVec.at(1))));
-    //     _h["2tau_region_DEta_tau01"]->fill(fabs(deltaEta(tauVec.at(0),tauVec.at(1))));
-    //     _h["2tau_region_DPhi_tau01"]->fill(fabs(deltaPhi(tauVec.at(0),tauVec.at(1))));
-    // }
+    // 2LSS+3L region
+    if(  ( nLep==2 && (lepVec.at(0).charge()*lepVec.at(1).charge() >0 && lepVec.at(0).pT()/GeV >15 && lepVec.at(1).pT()/GeV > 15) ) || ( nLep==3 &&  abs(elqsum + muqsum) ==1 && (lepVec.at(0).pT()/GeV >15 && lepVec.at(1).pT()/GeV > 15 && lepVec.at(2).pT()/GeV > 15) ) ){
+
+       _h["2lSS3l_nJets"]->fill(alljets_withHadTau.size());
+       _h["2lSS3l_HT"]->fill(ht);
+       _h["2lSS3l_HT_jets"]->fill(ht_jets);
+       _h["2lSS3l_nBjets"]->fill(bjets.size());
+       _h["2lSS3l_lep0Pt"]->fill(lepVec.at(0).pT()/GeV);
+       _h["2lSS3l_lep0Eta"]->fill(lepVec.at(0).eta());
+       _h["2lSS3l_lepJetMinDR"]->fill(min_lj_deltaR);
+       _h["2lSS3l_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
+       _h["2lSS3l_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
+       _h["2lSS3l_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
+       _h["2lSS3l_entries"]->fill(1,1);
+
+       if (alljets_withHadTau.size() >= 1){
+         _h["2lSS3l_jet0Pt"]->fill(alljets_withHadTau.at(0).pT()/GeV);
+         _h["2lSS3l_jet0Eta"]->fill(alljets_withHadTau.at(0).eta());
+       }
+       if (bjets.size()>=1){
+         _h["2lSS3l_bjet0Pt"]->fill(bjets.at(0).pT()/GeV);
+       }
+
+
+
+
+
+    }
 
     //two light-leptons
-    // if(nLep==2)
-    // {
-    //     //same sign + lepton pT
-    //     // Region-1
-    //     if(lepVec.at(0).charge()*lepVec.at(1).charge() >0 && lepVec.at(0).pT()/GeV >15 && lepVec.at(1).pT()/GeV > 15) // subleading 10 -> 15 GeV
-    //     {
-    //          _h["2lSS0tau_region1_nJets"]->fill(alljets.size());
-    //          _h["2lSS0tau_region1_HT"]->fill(ht);
-    //          _h["2lSS0tau_region1_HT_jets"]->fill(ht_jets);
-    //          _h["2lSS0tau_region1_nBjets"]->fill(bjets.size());
-    //          _h["2lSS0tau_region1_lep0Pt"]->fill(lepVec.at(0).pT()/GeV);
-    //          _h["2lSS0tau_region1_lep0Eta"]->fill(lepVec.at(0).eta());
-    //          _h["2lSS0tau_region1_lepJetMinDR"]->fill(min_lj_deltaR);
-    //          _h["2lSS0tau_region1_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
-    //          _h["2lSS0tau_region1_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
-    //          _h["2lSS0tau_region1_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
-    //
-    //          _h["2lSS0tau_region1_sumW"]->fill(1);
-    //
-    //          if (alljets.size() >= 1){
-    //            _h["2lSS0tau_region1_jet0Pt"]->fill(alljets.at(0).pT()/GeV);
-    //            _h["2lSS0tau_region1_jet0Eta"]->fill(alljets.at(0).eta());
-    //          }
-    //          if (bjets.size()>=1){
-    //            _h["2lSS0tau_region1_bjet0Pt"]->fill(bjets.at(0).pT()/GeV);
-    //          }
+    if(nLep==2)
+    {
+        //same sign + lepton pT
+        // Region-1
+        if(lepVec.at(0).charge()*lepVec.at(1).charge() >0 && lepVec.at(0).pT()/GeV >15 && lepVec.at(1).pT()/GeV > 15) // subleading 10 -> 15 GeV
+        {
+             _h["2lSS_nJets"]->fill(alljets_withHadTau.size());
+             _h["2lSS_HT"]->fill(ht);
+             _h["2lSS_HT_jets"]->fill(ht_jets);
+             _h["2lSS_nBjets"]->fill(bjets.size());
+             _h["2lSS_lep0Pt"]->fill(lepVec.at(0).pT()/GeV);
+             _h["2lSS_lep0Eta"]->fill(lepVec.at(0).eta());
+             _h["2lSS_lepJetMinDR"]->fill(min_lj_deltaR);
+             _h["2lSS_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
+             _h["2lSS_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
+             _h["2lSS_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
+             _h["2lSS_entries"]->fill(1,1);
 
-	     // 0-tau
-           //  if(tauVec.size()==0)
-           //  {
-       		 // // _h["2lSS0tau_MET"]->fill(event_met/GeV);
-           //      // "Region-2"
-           //      if(bjets.size()>=1 && alljets.size() >= 4)
-           //      {
-           // 		     _h["2lSS0tau_region2_nJets"]->fill(alljets.size());
-           // 		     _h["2lSS0tau_region2_HT"]->fill(ht);
-           // 		     _h["2lSS0tau_region2_HT_jets"]->fill(ht_jets);
-           // 		     _h["2lSS0tau_region2_nBjets"]->fill(bjets.size());
-           // 		     _h["2lSS0tau_region2_bjet0Pt"]->fill(bjets.at(0).pT()/GeV);
-           // 		     _h["2lSS0tau_region2_lep0Pt"]->fill(lepVec.at(0).pT()/GeV);
-           //         _h["2lSS0tau_region2_lep0Eta"]->fill(lepVec.at(0).eta());
-           // 		     _h["2lSS0tau_region2_lepJetMinDR"]->fill(min_lj_deltaR);
-           // 		     _h["2lSS0tau_region2_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
-           // 		     _h["2lSS0tau_region2_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
-           // 		     _h["2lSS0tau_region2_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
-           //         _h["2lSS0tau_region2_jet0Pt"]->fill(alljets.at(0).pT()/GeV);
-           //         _h["2lSS0tau_region2_jet0Eta"]->fill(alljets.at(0).eta());
-           //
-           //         _h["2lSS0tau_region2_sumW"]->fill(1);
+             // _h["2lSS_sumW"]->fill(1);
+
+             if (alljets_withHadTau.size() >= 1){
+               _h["2lSS_jet0Pt"]->fill(alljets_withHadTau.at(0).pT()/GeV);
+               _h["2lSS_jet0Eta"]->fill(alljets_withHadTau.at(0).eta());
+             }
+             if (bjets.size()>=1){
+               _h["2lSS_bjet0Pt"]->fill(bjets.at(0).pT()/GeV);
+             }
+
+                // 1b+4j
+                if(bjets.size()>=1 && alljets_withHadTau.size() >= 4)
+                {
+           		     _h["2lSS_1b4j_nJets"]->fill(alljets_withHadTau.size());
+           		     _h["2lSS_1b4j_HT"]->fill(ht);
+           		     _h["2lSS_1b4j_HT_jets"]->fill(ht_jets);
+           		     _h["2lSS_1b4j_nBjets"]->fill(bjets.size());
+           		     _h["2lSS_1b4j_bjet0Pt"]->fill(bjets.at(0).pT()/GeV);
+           		     _h["2lSS_1b4j_lep0Pt"]->fill(lepVec.at(0).pT()/GeV);
+                   _h["2lSS_1b4j_lep0Eta"]->fill(lepVec.at(0).eta());
+           		     _h["2lSS_1b4j_lepJetMinDR"]->fill(min_lj_deltaR);
+           		     _h["2lSS_1b4j_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
+           		     _h["2lSS_1b4j_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
+           		     _h["2lSS_1b4j_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
+                   _h["2lSS_1b4j_jet0Pt"]->fill(alljets_withHadTau.at(0).pT()/GeV);
+                   _h["2lSS_1b4j_jet0Eta"]->fill(alljets_withHadTau.at(0).eta());
+                   // _h["2lSS_1b4j_sumW"]->fill(1);
+                   _h["2lSS_1b4j_entries"]->fill(1,1);
+
                 }
-         //        // "Region-3"
-         //        if(bjets.size()>=2 && alljets.size() >= 4)
-         //        {
-     		 //     _h["2lSS0tau_region3_nJets"]->fill(alljets.size());
-     		 //     _h["2lSS0tau_region3_HT"]->fill(ht);
-		     // _h["2lSS0tau_region3_nBjets"]->fill(bjets.size());
-		     // _h["2lSS0tau_region3_bjet0pT"]->fill(bjets.at(0).pT()/GeV);
-		     // _h["2lSS0tau_region3_lep0pT"]->fill(lepVec.at(0).pT()/GeV);
-		     // _h["2lSS0tau_region3_lepJetMinDR"]->fill(min_lj_deltaR);
-		     // _h["2lSS0tau_region3_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
-		     // _h["2lSS0tau_region3_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
-		     // _h["2lSS0tau_region3_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
-         //
-         //        }
-         //        // "Region-4"
-         //        if(bjets.size()==1 && alljets.size() >= 3)
-         //        {
-     		 //     _h["2lSS0tau_region4_nJets"]->fill(alljets.size());
-     		 //     _h["2lSS0tau_region4_HT"]->fill(ht);
-		     // _h["2lSS0tau_region4_nBjets"]->fill(bjets.size());
-		     // _h["2lSS0tau_region4_bjet0pT"]->fill(bjets.at(0).pT()/GeV);
-		     // _h["2lSS0tau_region4_lep0pT"]->fill(lepVec.at(0).pT()/GeV);
-		     // _h["2lSS0tau_region4_lepJetMinDR"]->fill(min_lj_deltaR);
-		     // _h["2lSS0tau_region4_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
-		     // _h["2lSS0tau_region4_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
-		     // _h["2lSS0tau_region4_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
-         //
-         //        }
-         //        // "Region-5"
-         //        if(bjets.size()>=2 && alljets.size() >= 3)
-         //        {
-     		 //     _h["2lSS0tau_region5_nJets"]->fill(alljets.size());
-     		 //     _h["2lSS0tau_region5_HT"]->fill(ht);
-		     // _h["2lSS0tau_region5_nBjets"]->fill(bjets.size());
-		     // _h["2lSS0tau_region5_bjet0pT"]->fill(bjets.at(0).pT()/GeV);
-		     // _h["2lSS0tau_region5_lep0pT"]->fill(lepVec.at(0).pT()/GeV);
-		     // _h["2lSS0tau_region5_lepJetMinDR"]->fill(min_lj_deltaR);
-		     // _h["2lSS0tau_region5_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
-		     // _h["2lSS0tau_region5_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
-		     // _h["2lSS0tau_region5_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
-         //        }
-            // }
-	     // 1-tau
-     //        else if (tauVec.size()>=1)
-     //        {
-	   //       _h["2lSS1tau_MET"]->fill(event_met/GeV);
-		 // // "Region-6"
-		 // _h["2lSS1tau_region6_nJets"]->fill(alljets.size());
-     // 	         _h["2lSS1tau_region6_HT"]->fill(ht);
-	   //       _h["2lSS1tau_region6_nBjets"]->fill(bjets.size());
-	   //       _h["2lSS1tau_region6_lep0pT"]->fill(lepVec.at(0).pT()/GeV);
-	   //       _h["2lSS1tau_region6_lepJetMinDR"]->fill(min_lj_deltaR);
-	   //       _h["2lSS1tau_region6_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
-	   //       _h["2lSS1tau_region6_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
-	   //       _h["2lSS1tau_region6_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
-		 // _h["2lSS1tau_region6_tauPt"]->fill(tauVec.at(0).pT()/GeV);
-     //
-	   //       // "Region-7"
-     //            if(bjets.size() >= 1 && alljets.size() >= 3)
-     //            {
-	   //           _h["2lSS1tau_region7_nJets"]->fill(alljets.size());
-     // 	             _h["2lSS1tau_region7_HT"]->fill(ht);
-	   //           _h["2lSS1tau_region7_nBjets"]->fill(bjets.size());
-	   //           _h["2lSS1tau_region7_bjet0pT"]->fill(bjets.at(0).pT()/GeV);
-	   //           _h["2lSS1tau_region7_lep0pT"]->fill(lepVec.at(0).pT()/GeV);
-	   //           _h["2lSS1tau_region7_lepJetMinDR"]->fill(min_lj_deltaR);
-	   //           _h["2lSS1tau_region7_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
-	   //           _h["2lSS1tau_region7_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
-	   //           _h["2lSS1tau_region7_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
-		 //     _h["2lSS1tau_region7_tauPt"]->fill(tauVec.at(0).pT()/GeV);
-	   //        }
-     //       }
-     //     }
-     // }
-    //  else if (nLep==3){
-    //    if( abs(elqsum + muqsum) ==1){
-    //      if(lepVec.at(0).pT()/GeV >15 && lepVec.at(1).pT()/GeV > 15 && lepVec.at(2).pT()/GeV > 15){
-    //        if(tauVec.size()==0){
-    //          if(bjets.size()>=1 && alljets.size() >= 2){
-    //        		     _h["3l_region_nJets"]->fill(alljets.size());
-    //        		     _h["3l_region_HT"]->fill(ht);
-    //                _h["3l_region_HT_jets"]->fill(ht_jets);
-    //        		     _h["3l_region_nBjets"]->fill(bjets.size());
-    //        		     _h["3l_region_bjet0Pt"]->fill(bjets.at(0).pT()/GeV);
-    //        		     _h["3l_region_lep0Pt"]->fill(lepVec.at(0).pT()/GeV);
-    //                _h["3l_region_lep0Eta"]->fill(lepVec.at(0).eta());
-    //        		     _h["3l_region_lepJetMinDR"]->fill(min_lj_deltaR);
-    //        		     _h["3l_region_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
-    //        		     _h["3l_region_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
-    //        		     _h["3l_region_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
-    //                _h["3l_region_jet0Pt"]->fill(alljets.at(0).pT()/GeV);
-    //                _h["3l_region_jet0Eta"]->fill(alljets.at(0).eta());
-    //                _h["3l_region_sumW"]->fill(1);
-    //
-    //            }
-    //
-    //          }
-    //      }
-    //    }
-    // }
+         }
+     }
+     else if (nLep==3){
+       if( abs(elqsum + muqsum) ==1){
+         if(lepVec.at(0).pT()/GeV >15 && lepVec.at(1).pT()/GeV > 15 && lepVec.at(2).pT()/GeV > 15){
+         		     _h["3l_nJets"]->fill(alljets_withHadTau.size());
+         		     _h["3l_HT"]->fill(ht);
+                 _h["3l_HT_jets"]->fill(ht_jets);
+         		     _h["3l_nBjets"]->fill(bjets.size());
+         		     _h["3l_lep0Pt"]->fill(lepVec.at(0).pT()/GeV);
+                 _h["3l_lep0Eta"]->fill(lepVec.at(0).eta());
+         		     _h["3l_lepJetMinDR"]->fill(min_lj_deltaR);
+         		     _h["3l_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
+         		     _h["3l_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
+         		     _h["3l_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
+                 // _h["3l_sumW"]->fill(1);
+
+                 if (alljets_withHadTau.size() >= 1){
+                   _h["3l_jet0Pt"]->fill(alljets_withHadTau.at(0).pT()/GeV);
+                   _h["3l_jet0Eta"]->fill(alljets_withHadTau.at(0).eta());
+                 }
+                 if (bjets.size()>=1){
+          		     _h["3l_bjet0Pt"]->fill(bjets.at(0).pT()/GeV);
+
+                 }
+                  _h["3l_entries"]->fill(1,1);
+
+
+             if(bjets.size()>=1 && alljets_withHadTau.size() >= 2){
+           		     _h["3l_1b2j_nJets"]->fill(alljets_withHadTau.size());
+           		     _h["3l_1b2j_HT"]->fill(ht);
+                   _h["3l_1b2j_HT_jets"]->fill(ht_jets);
+           		     _h["3l_1b2j_nBjets"]->fill(bjets.size());
+           		     _h["3l_1b2j_bjet0Pt"]->fill(bjets.at(0).pT()/GeV);
+           		     _h["3l_1b2j_lep0Pt"]->fill(lepVec.at(0).pT()/GeV);
+                   _h["3l_1b2j_lep0Eta"]->fill(lepVec.at(0).eta());
+           		     _h["3l_1b2j_lepJetMinDR"]->fill(min_lj_deltaR);
+           		     _h["3l_1b2j_DR_lep01"]->fill(fabs(deltaR(lepVec.at(0),lepVec.at(1))));
+           		     _h["3l_1b2j_DEta_lep01"]->fill(fabs(deltaEta(lepVec.at(0),lepVec.at(1))));
+           		     _h["3l_1b2j_DPhi_lep01"]->fill(fabs(deltaPhi(lepVec.at(0),lepVec.at(1))));
+                   _h["3l_1b2j_jet0Pt"]->fill(alljets_withHadTau.at(0).pT()/GeV);
+                   _h["3l_1b2j_jet0Eta"]->fill(alljets_withHadTau.at(0).eta());
+                   // _h["3l_1b2j_sumW"]->fill(1);
+                   _h["3l_1b2j_entries"]->fill(1,1);
+
+
+               }
+         }
+       }
+    }
 
   }
 
@@ -667,5 +615,5 @@ namespace Rivet {
 
 
   // The hook for the plugin system
-  DECLARE_RIVET_PLUGIN(ttw_ttH);
+  DECLARE_RIVET_PLUGIN(tttt_event);
 }
