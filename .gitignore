@@ -1,0 +1,9 @@
+*.so
+*.PoolFileCatalog*
+input/
+*.xml*
+*.yoda*
+*.root*
+*eventLoopHeartBeat.txt*
+*hostnamelookup.tmp*
+sample/
