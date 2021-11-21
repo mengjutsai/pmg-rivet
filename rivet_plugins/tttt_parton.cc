@@ -167,7 +167,7 @@ namespace Rivet {
               }
 
               //Select heavy higgs bosons
-              if(fabs(part->pdg_id())==35&&Particle(part).children().size())
+              if( (fabs(part->pdg_id())==35 || fabs(part->pdg_id())==36) &&Particle(part).children().size())
               {
 
                     if ( part->production_vertex() && !hasParent(part, part->pdg_id()) && Particle(part).children().size()>0 )
